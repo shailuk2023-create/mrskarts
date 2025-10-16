@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MR. SK TYPEWRITER ARTS</title>
+  <!-- Modern + Typewriter fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Inter:wght@400;600&family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#ff6b6b;--glass:rgba(255,255,255,0.04);--glass-2:rgba(255,255,255,0.02);--muted:#9fb6ff;--secondary:#6b6bff;--tertiary:#ffb86b}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Courier New', Courier, monospace, Poppins, Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial; background:linear-gradient(180deg,#071023 0%, #091229 60%); color:#e6eef6; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:18px; letter-spacing:0.02em; text-shadow:0 0 2px rgba(0,0,0,0.3)}
+    .wrap{width:100%; max-width:1160px}
+    header{display:flex; gap:16px; align-items:center; margin-bottom:14px}
+    .logo{display:flex;align-items:center;gap:12px}
+    .mark{width:92px;height:92px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#ffb86b);display:flex;align-items:center;justify-content:center;font-weight:800;color:#09101a;font-size:20px;box-shadow:0 8px 26px rgba(0,0,0,0.6);overflow:hidden}
+    .mark img{width:100%;height:100%;object-fit:cover;display:block}
+    .mark svg{width:100%;height:100%;display:block}
+    h1{margin:0;font-size:28px;font-weight:800;letter-spacing:0.6px; font-family:'Special Elite', monospace;background:linear-gradient(135deg,#ff6b6b,#6b6bff,#ffb86b,#ff6b6b); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:gradient-shift 3s ease infinite;}
+    p.lead{margin:0;color:#b8d0ff;opacity:0.95; font-family:monospace}
+
+    /* Stylish Banner in Header */
+    .banner {width:100%; height:4px; background:linear-gradient(90deg,var(--accent),var(--secondary),var(--tertiary),var(--accent)); border-radius:2px; margin-bottom:14px; animation: banner-glow 2s ease-in-out infinite alternate;}
+    @keyframes banner-glow {0% {opacity:0.7;} 100% {opacity:1; box-shadow:0 0 10px var(--accent);} }
+
+    @keyframes gradient-shift {0% {background-position:0% 50%;} 50% {background-position:100% 50%;} 100% {background-position:0% 50%;}}
+
+    .grid{display:grid;grid-template-columns:480px 1fr;gap:18px}
+    @media (max-width:920px){.grid{grid-template-columns:1fr}}
+
+    .card{background:linear-gradient(180deg,var(--glass), var(--glass-2)); padding:14px;border-radius:12px;box-shadow:0 6px 30px rgba(2,6,23,0.6); border:1px solid rgba(255,255,255,0.03)}
+
+    .uploader{border:2px dashed rgba(255,255,255,0.06); padding:18px; border-radius:12px; text-align:center; height:340px; display:flex;align-items:center;justify-content:center;flex-direction:column; position:relative}
+    .uploader.drag{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));}
+    .uploader input[type='file']{position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:pointer}
+    .thumb{max-width:100%; max-height:260px; margin-top:12px; border-radius:8px; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.02)}
+
+    .controls{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+    .row{display:flex;gap:10px;align-items:center}
+    label{font-size:13px;color:#cfe0ff;min-width:90px; font-family:monospace}
+    input[type=range]{width:100%}
+
+    select,input[type=number],button{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.06); color:inherit; padding:8px 10px; border-radius:10px; font-weight:600; font-family:monospace; transition:transform 0.2s ease;}
+    select:focus, input[type=range]:focus, button:focus{outline:2px solid rgba(255,107,107,0.18)}
+    select{appearance:none; -webkit-appearance:none}
+    option{background:#071023;color:#e6eef6; font-family:monospace}
+    button:hover {transform: scale(1.05);}
+
+    .actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+    button{cursor:pointer}
+    .primary{background:linear-gradient(90deg,var(--accent),#ffb86b);color:#09101a;font-weight:900;border:none;padding:10px 14px; font-family:'Special Elite', monospace}
+    .secondary{background:linear-gradient(90deg,var(--secondary),#9fb6ff);color:#09101a;border:none;padding:10px 14px}
+    .tertiary{background:linear-gradient(90deg,#ffb86b,var(--accent));color:#09101a;border:none;padding:10px 14px}
+
+    .presetBar{display:flex;gap:8px;flex-wrap:wrap}
+    .presetBtn{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 12px;border-radius:8px;color:var(--muted);cursor:pointer; font-family:monospace}
+
+    .preview{display:flex;flex-direction:column;gap:12px}
+    .output{background:#020617;border-radius:8px;padding:12px;min-height:260px;overflow:auto;border:1px solid rgba(255,255,255,0.02)}
+    pre{font-family: 'Courier New', Courier, monospace; font-size:11px; line-height:11px; margin:0; white-space:pre; color:#e6eef6; letter-spacing:0.01em}
+
+    .meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .small{font-size:12px;color:#97b3e0; font-family:monospace}
+    .hint{font-size:12px;color:#9fb6ff; font-family:monospace}
+
+    footer{margin-top:12px;color:#9fb6ff;font-size:13px; font-family:monospace}
+    .output.small pre{font-size:8px;line-height:8px}
+    .output.large pre{font-size:12px;line-height:12px}
+
+    .copied{background:rgba(0,0,0,0.6);padding:6px 8px;border-radius:8px;color:#d2ffd9; font-family:monospace}
+
+    /* Welcome Modal */
+    #welcome {position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); display:flex; align-items:center; justify-content:center; z-index:1000; opacity:0; animation:fadeIn 0.4s forwards;}
+    #welcome-content {background:linear-gradient(135deg,var(--card),var(--glass)); padding:26px; border-radius:18px; max-width:880px; width:92%; text-align:center; box-shadow:0 12px 50px rgba(0,0,0,0.6); transform:scale(0.96); animation:popIn 0.4s forwards;}
+    #welcome h2 {font-family:'Special Elite', monospace; color:var(--accent); margin-bottom:14px; font-size:30px}
+    #welcome p {color:var(--muted); margin-bottom:16px}
+    .demo-grid {display:grid; grid-template-columns:repeat(auto-fit, minmax(160px,1fr)); gap:12px; margin-bottom:16px}
+    .demo-img {width:100%; height:140px; object-fit:contain; border-radius:10px; background:linear-gradient(180deg,#071023,#091229); box-shadow:0 6px 26px rgba(0,0,0,0.45);}
+    #startBtn {background:linear-gradient(90deg,var(--accent),var(--tertiary)); color:#09101a; font-weight:900; border:none; padding:12px 18px; border-radius:12px; cursor:pointer; transition:transform 0.18s;}
+    #startBtn:hover {transform:scale(1.04)}
+    @keyframes fadeIn {to {opacity:1;}}
+    @keyframes popIn {to {transform:scale(1);}}
+
+    /* Full Screen Firecracker Animation */
+    #firecracker-overlay {position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:2000; display:none; justify-content:center; align-items:center; pointer-events:none;}
+    .firecracker {position:absolute; width:4px; height:4px; background:var(--accent); border-radius:50%; animation:firework 1s ease-out infinite;}
+    @keyframes firework {0% {transform:translateY(0) rotate(0deg); opacity:1;} 100% {transform:translateY(-100vh) rotate(720deg); opacity:0;}}
+  </style>
+</head>
+<body>
+  <!-- Welcome Modal (working) -->
+  <div id="welcome" role="dialog" aria-modal="true">
+    <div id="welcome-content">
+      <h2>Welcome to MR. SK TYPEWRITER ARTS</h2>
+      <p>Create stunning typewriter-style art from your images! Check out these demos:</p>
+      <div class="demo-grid">
+        <img class="demo-img" src="https://media.wired.com/photos/5932949552d99d6b984df8db/3:2/w_2560%2Cc_limit/gramophone_1200.jpg" alt="Demo 1">
+        <img class="demo-img" src="https://nhigham.com/wp-content/uploads/2014/08/wpid-prince-charles-portrait1.jpg" alt="Demo 2">
+        <img class="demo-img" src="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/14632442/shirley.1419980359.jpg?quality=90&strip=all&crop=8.3928571428571,0,83.214285714286,100" alt="Demo 3">
+      </div>
+      <button id="startBtn">Make Your Precious Typewriter Art</button>
+    </div>
+  </div>
+
+  <!-- Full Screen Firecracker Overlay -->
+  <div id="firecracker-overlay">
+    <!-- Firecracker particles will be added via JS -->
+  </div>
+
+  <div class="wrap">
+    <header>
+      <div class="logo">
+        <div class="mark" id="logoMark">
+          <!-- Logo Image (online) -->
+          <img src="https://static.vecteezy.com/system/resources/previews/011/701/793/non_2x/typewriter-logo-illustration-design-vector.jpg" alt="logo" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;" />
+        </div>
+        <div>
+          <h1>MR. SK TYPEWRITER ARTS</h1>
+          <p class="lead">Image → High-fidelity Typewriter / ASCII Art — अब click/drag/paste सभी काम करेंगे</p>
+        </div>
+      </div>
+      <div style="margin-left:auto" class="small" id="brandExtra">Client-side • Mobile-ready</div>
+    </header>
+
+    <!-- Stylish Banner -->
+    <div class="banner"></div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="topBar">
+          <div>
+            <strong>Image Settings</strong>
+            <div class="small">Upload image (jpg/png) या drag & drop — paste (Ctrl+V) भी चलेगा</div>
+          </div>
+          <div class="small">Pro Tip: Portraits & high-contrast photos best है</div>
+        </div>
+
+        <div id="dropArea" class="uploader" tabindex="0">
+          <div style="font-size:15px">Drop image here या क्लिक करके चुनें (या Clipboard से paste करें)</div>
+          <!-- Invisible input covers whole area so click works; also provide explicit button as fallback -->
+          <input id="fileInput" type="file" accept="image/*">
+          <button id="chooseBtn" style="position:relative; z-index:2; margin-top:12px; padding:8px 12px; border-radius:8px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); color:var(--muted);">Choose File</button>
+          <img id="thumb" class="thumb" alt="preview" style="display:none">
+        </div>
+
+        <div class="controls">
+          <div class="row presetBar">
+            <button class="presetBtn" id="presetAuto">Auto Optimize</button>
+            <button class="presetBtn" id="presetPortrait">Portrait</button>
+            <button class="presetBtn" id="presetFace">Face Close-up</button>
+            <button class="presetBtn" id="presetLandscape">Landscape</button>
+          </div>
+
+          <div class="row">
+            <label>Width</label>
+            <input id="outWidth" type="range" min="40" max="420" value="140">
+            <div class="small" id="widthVal">140</div>
+          </div>
+
+          <div class="row">
+            <label>ART Set</label>
+            <select id="charPreset">
+              <option value="ultra">Ultra (unicode & blocks)</option>
+              <option value="full">Full (symbols & chars)</option>
+              <option value="dense">Dense (numbers + symbols)</option>
+              <option value="classic">Classic (ASCII ramp)</option>
+            </select>
+          </div>
+
+          <div class="row">
+            <label>Contrast</label>
+            <input id="contrast" type="range" min="0" max="2" step="0.01" value="1">
+            <div class="small" id="contrastVal">1.00</div>
+          </div>
+
+          <div class="row">
+            <label>Gamma</label>
+            <input id="gamma" type="range" min="0.3" max="3" step="0.01" value="1">
+            <div class="small" id="gammaVal">1.00</div>
+          </div>
+
+          <div class="row">
+            <label>Dithering</label>
+            <select id="ditherMode"><option value="none">None</option><option value="fs">Floyd–Steinberg</option></select>
+          </div>
+
+          <div class="row">
+            <label>Font Size</label>
+            <input id="fontSize" type="range" min="7" max="16" value="10">
+            <div class="small" id="fontVal">10</div>
+          </div>
+
+          <div class="actions">
+            <button id="convertBtn" class="primary">Generate ➜</button>
+            <button id="clearBtn" class="secondary">Clear</button>
+            <button id="downloadTxtBtn" class="tertiary">Download .txt</button>
+            <button id="downloadImgBtn" class="primary">Download Image (HD)</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card preview">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><strong>ASCII / Typewriter Output</strong><div class="small hint">Copy or Download — mono font में देखें</div></div>
+          <div class="meta"><div id="metaInfo" class="small">Ready</div></div>
+        </div>
+
+        <div id="outputBox" class="output small"><pre id="asciiOut">Upload/paste image then click Generate — MR. SK TYPEWRITER ARTS</pre></div>
+
+        <div style="display:flex;gap:8px;margin-top:8px;align-items:center">
+          <button id="copyBtn" class="secondary">Copy to Clipboard</button>
+          <button id="selectAllBtn" class="tertiary">Select All</button>
+          <div id="copiedBadge" style="display:none" class="copied">Copied!</div>
+        </div>
+
+        <footer>
+          <div>Made with ❤️ • Use <code>Courier New</code> for best view.</div>
+          <div style="margin-top:8px;color:#ffd9b8;font-weight:700">Special Thanks: Website honour to Mr. SHAILENDRA KUSHWAH</div>
+        </footer>
+      </div>
+    </div>
+
+    <canvas id="canvas" style="display:none"></canvas>
+  </div>
+
+  <script>
+    // DOM elements
+    const fileInput = document.getElementById('fileInput');
+    const chooseBtn = document.getElementById('chooseBtn');
+    const dropArea = document.getElementById('dropArea');
+    const thumb = document.getElementById('thumb');
+    const outWidth = document.getElementById('outWidth');
+    const widthVal = document.getElementById('widthVal');
+    const charPreset = document.getElementById('charPreset');
+    const contrast = document.getElementById('contrast');
+    const contrastVal = document.getElementById('contrastVal');
+    const gamma = document.getElementById('gamma');
+    const gammaVal = document.getElementById('gammaVal');
+    const ditherMode = document.getElementById('ditherMode');
+    const convertBtn = document.getElementById('convertBtn');
+    const asciiOut = document.getElementById('asciiOut');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const fontSize = document.getElementById('fontSize');
+    const fontVal = document.getElementById('fontVal');
+    const downloadTxtBtn = document.getElementById('downloadTxtBtn');
+    const downloadImgBtn = document.getElementById('downloadImgBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    const selectAllBtn = document.getElementById('selectAllBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const metaInfo = document.getElementById('metaInfo');
+    const outputBox = document.getElementById('outputBox');
+    const copiedBadge = document.getElementById('copiedBadge');
+
+    // Character ramps (UTF-8 safe)
+    const ramps = { 
+      ultra: `█▓▒░@#W&%$9876543210?!abc;:+=-_,.\`"^~<>i!lI;:,'' `, 
+      full: `@#W&%$9876543210?!abc;:+=-,._ \`\\"^~<>i!lI;:,\\\"^'. `, 
+      dense: `@#8&B%0QOZYWmwdxkqjft/\\|()1{}[]?-_+~<>i!lI;:,\\\".' `, 
+      classic: `$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft\\/|()1{}[]?-_+~<>i!lI;:,\\\"^\`'. ` 
+    };
+
+    let loadedImage = null;
+
+    // Clamp function for safe bounds
+    const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+    // Init UI
+    widthVal.textContent = outWidth.value; 
+    contrastVal.textContent = parseFloat(contrast.value).toFixed(2); 
+    gammaVal.textContent = parseFloat(gamma.value).toFixed(2); 
+    fontVal.textContent = fontSize.value;
+    asciiOut.style.fontSize = fontSize.value + 'px'; 
+    asciiOut.style.lineHeight = fontSize.value + 'px';
+
+    outWidth.addEventListener('input', () => widthVal.textContent = outWidth.value);
+    contrast.addEventListener('input', () => contrastVal.textContent = parseFloat(contrast.value).toFixed(2));
+    gamma.addEventListener('input', () => gammaVal.textContent = parseFloat(gamma.value).toFixed(2));
+    fontSize.addEventListener('input', () => { 
+      fontVal.textContent = fontSize.value; 
+      asciiOut.style.fontSize = fontSize.value + 'px'; 
+      asciiOut.style.lineHeight = fontSize.value + 'px'; 
+      if(fontSize.value < 9){ 
+        outputBox.classList.remove('large'); 
+        outputBox.classList.add('small'); 
+      } else { 
+        outputBox.classList.remove('small'); 
+        outputBox.classList.add('large'); 
+      } 
+    });
+
+    // Drag & drop events
+    ['dragenter','dragover'].forEach(ev => dropArea.addEventListener(ev, e => { 
+      e.preventDefault(); 
+      dropArea.classList.add('drag') 
+    }));
+    ['dragleave','drop'].forEach(ev => dropArea.addEventListener(ev, e => { 
+      e.preventDefault(); 
+      dropArea.classList.remove('drag') 
+    }));
+    dropArea.addEventListener('drop', e => { 
+      const f = e.dataTransfer.files[0]; 
+      handleFile(f); 
+    });
+
+    // File input and choose button
+    fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+    chooseBtn.addEventListener('click', () => fileInput.click());
+
+    // Paste event with better handling
+    window.addEventListener('paste', (e) => {
+      const items = e.clipboardData && e.clipboardData.items; 
+      if(!items) return; 
+      for(let i = 0; i < items.length; i++){ 
+        const it = items[i]; 
+        if(it.kind === 'file' && it.type.indexOf('image') !== -1){ 
+          const blob = it.getAsFile(); 
+          handleFile(blob); 
+          metaInfo.textContent = 'Image pasted from clipboard'; 
+          return; 
+        } 
+      } 
+    });
+
+    // Improved handleFile with validation
+    function handleFile(file) { 
+      if(!file || !file.type.startsWith('image/')) { 
+        alert('Please select a valid image file (jpg/png).'); 
+        return; 
+      } 
+      const reader = new FileReader(); 
+      reader.onload = evt => { 
+        const img = new Image(); 
+        img.onload = () => { 
+          loadedImage = img; 
+          thumb.src = evt.target.result; 
+          thumb.style.display = 'block'; 
+          metaInfo.textContent = `Loaded: ${file.name || 'pasted image'} — ${img.width}x${img.height}`; 
+        }; 
+        img.onerror = () => { 
+          alert('Error loading image. Try another file.'); 
+          console.error('Image load error'); 
+        }; 
+        img.src = evt.target.result; 
+      }; 
+      reader.onerror = () => { 
+        alert('Error reading file.'); 
+        console.error('FileReader error'); 
+      }; 
+      reader.readAsDataURL(file); 
+    }
+
+    // Presets with image check - Auto Optimize updated to match screenshot values
+    document.getElementById('presetAuto').addEventListener('click', () => { 
+      if(!loadedImage){ 
+        alert('Pehle image upload karo'); 
+        return;
+      } 
+      const w = Math.min(120, Math.max(100, Math.round(loadedImage.width/3))); 
+      outWidth.value = w; 
+      widthVal.textContent = w; 
+      contrast.value = 1.50; 
+      contrastVal.textContent = '1.50'; 
+      gamma.value = 0.82; 
+      gammaVal.textContent = '0.82'; 
+      fontSize.value = 8; 
+      fontVal.textContent = 8; 
+      charPreset.value = 'classic'; 
+      ditherMode.value = 'none'; 
+    });
+    document.getElementById('presetPortrait').addEventListener('click', () => { 
+      outWidth.value = 140; 
+      widthVal.textContent = 140; 
+      contrast.value = 1.1; 
+      contrastVal.textContent = '1.10'; 
+      gamma.value = 0.95; 
+      gammaVal.textContent = '0.95'; 
+      fontSize.value = 10; 
+      fontVal.textContent = 10; 
+      charPreset.value = 'full'; 
+      ditherMode.value = 'fs'; 
+    });
+    document.getElementById('presetFace').addEventListener('click', () => { 
+      outWidth.value = 200; 
+      widthVal.textContent = 200; 
+      contrast.value = 1.12; 
+      contrastVal.textContent = '1.12'; 
+      gamma.value = 0.9; 
+      gammaVal.textContent = '0.90'; 
+      fontSize.value = 11; 
+      fontVal.textContent = 11; 
+      charPreset.value = 'ultra'; 
+      ditherMode.value = 'fs'; 
+    });
+    document.getElementById('presetLandscape').addEventListener('click', () => { 
+      outWidth.value = 260; 
+      widthVal.textContent = 260; 
+      contrast.value = 0.98; 
+      contrastVal.textContent = '0.98'; 
+      gamma.value = 1.02; 
+      gammaVal.textContent = '1.02'; 
+      fontSize.value = 9; 
+      fontVal.textContent = 9; 
+      charPreset.value = 'dense'; 
+      ditherMode.value = 'none'; 
+    });
+
+    // Generate art with improved error handling
+    function generateArt() { 
+      if(!loadedImage){ 
+        alert('Koi image upload/paste karo!'); 
+        return; 
+      } 
+      try {
+        const targetW = parseInt(outWidth.value, 10); 
+        const aspectRatioCorrection = 0.55; 
+        const imgW = loadedImage.width, imgH = loadedImage.height; 
+        const scale = targetW / imgW; 
+        const targetH = Math.max(2, Math.round(imgH * scale * aspectRatioCorrection)); 
+        canvas.width = targetW; 
+        canvas.height = targetH; 
+        ctx.save(); 
+        ctx.clearRect(0, 0, canvas.width, canvas.height); 
+        ctx.drawImage(loadedImage, 0, 0, canvas.width, canvas.height); 
+        ctx.restore(); 
+        const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height); 
+        const data = imgData.data; 
+        let ramp = ramps[charPreset.value] || ramps.full; 
+        ramp = Array.from(new Set(ramp.split(''))).join(''); 
+        const rampLen = Math.max(2, ramp.length); 
+        const c = parseFloat(contrast.value); 
+        const g = parseFloat(gamma.value); 
+        const lum = new Float32Array(canvas.width * canvas.height); 
+        for(let y = 0; y < canvas.height; y++){ 
+          for(let x = 0; x < canvas.width; x++){ 
+            const i = (y * canvas.width + x) * 4; 
+            let r = data[i], gg = data[i + 1], b = data[i + 2]; 
+            let L = 0.21 * r + 0.72 * gg + 0.07 * b; 
+            L = clamp(((L - 128) * c) + 128, 0, 255); 
+            L = 255 * Math.pow(clamp(L / 255, 0, 1), 1 / g); 
+            lum[y * canvas.width + x] = L; 
+          } 
+        } 
+        if(ditherMode.value === 'fs'){ 
+          for(let y = 0; y < canvas.height; y++){ 
+            for(let x = 0; x < canvas.width; x++){ 
+              const idx = y * canvas.width + x; 
+              const oldVal = lum[idx]; 
+              const t = oldVal / 255; 
+              const qIndex = Math.round((rampLen - 1) * (1 - t)); 
+              const qVal = 255 * (1 - qIndex / (rampLen - 1)); 
+              const err = oldVal - qVal; 
+              lum[idx] = qVal; 
+              if(x + 1 < canvas.width) lum[idx + 1] += err * 7 / 16; 
+              if(x - 1 >= 0 && y + 1 < canvas.height) lum[idx + canvas.width - 1] += err * 3 / 16; 
+              if(y + 1 < canvas.height) lum[idx + canvas.width] += err * 5 / 16; 
+              if(x + 1 < canvas.width && y + 1 < canvas.height) lum[idx + canvas.width + 1] += err * 1 / 16; 
+            } 
+          } 
+        } 
+        let ascii = ''; 
+        for(let y = 0; y < canvas.height; y++){ 
+          for(let x = 0; x < canvas.width; x++){ 
+            const val = lum[y * canvas.width + x]; 
+            const t = clamp(val / 255, 0, 1); 
+            const rIndex = Math.floor((1 - t) * (rampLen - 1)); 
+            ascii += ramp[rIndex] || ' '; 
+          } 
+          ascii += '\n'; 
+        } 
+        asciiOut.textContent = ascii; 
+        metaInfo.textContent = `Generated — ${canvas.width} x ${canvas.height} chars`; 
+      } catch (error) {
+        alert('Generate error: ' + error.message); 
+        console.error('Generate error:', error); 
+        metaInfo.textContent = 'Error in generation';
+      }
+    }
+
+    convertBtn.addEventListener('click', () => { 
+      metaInfo.textContent = 'Generating...'; 
+      setTimeout(generateArt, 10); 
+    });
+    clearBtn.addEventListener('click', () => { 
+      thumb.style.display = 'none'; 
+      loadedImage = null; 
+      asciiOut.textContent = 'Upload/paste image then click Generate — MR. SK TYPEWRITER ARTS'; 
+      metaInfo.textContent = 'Ready'; 
+    });
+
+    copyBtn.addEventListener('click', async () => { 
+      try { 
+        await navigator.clipboard.writeText(asciiOut.textContent); 
+        copiedBadge.style.display = 'inline-block'; 
+        setTimeout(() => copiedBadge.style.display = 'none', 1200); 
+      } catch(e) { 
+        alert('Clipboard permission denied — select and copy manually.'); 
+      } 
+    });
+    selectAllBtn.addEventListener('click', () => { 
+      const range = document.createRange(); 
+      range.selectNodeContents(asciiOut); 
+      const sel = window.getSelection(); 
+      sel.removeAllRanges(); 
+      sel.addRange(range); 
+    });
+    downloadTxtBtn.addEventListener('click', () => { 
+      const blob = new Blob([asciiOut.textContent], {type: 'text/plain;charset=utf-8'}); 
+      const url = URL.createObjectURL(blob); 
+      const a = document.createElement('a'); 
+      a.href = url; 
+      a.download = 'mr-sk-typewriter-art.txt'; 
+      document.body.appendChild(a); 
+      a.click(); 
+      a.remove(); 
+      URL.revokeObjectURL(url); 
+    });
+    downloadImgBtn.addEventListener('click', () => { 
+      const text = asciiOut.textContent.trim(); 
+      if(!text){ 
+        alert('Generate text first'); 
+        return; 
+      } 
+      // Firecracker Animation Start
+      showFirecrackerAnimation();
+      // Original download code
+      const lines = text.split('\n'); 
+      const cols = lines.reduce((m, l) => Math.max(m, l.length), 0); 
+      const rows = lines.length; 
+      const scale = 6; 
+      const baseFont = Math.max(8, parseInt(fontSize.value, 10)); 
+      const fontPx = baseFont * scale; 
+      const renderCanvas = document.createElement('canvas'); 
+      const rCtx = renderCanvas.getContext('2d'); 
+      rCtx.font = fontPx + 'px Courier New, monospace'; 
+      const metrics = rCtx.measureText('M'); 
+      const charW = Math.ceil(metrics.width); 
+      const charH = Math.ceil(fontPx * 1.02); 
+      renderCanvas.width = cols * charW; 
+      renderCanvas.height = rows * charH; 
+      rCtx.fillStyle = '#020617'; 
+      rCtx.fillRect(0, 0, renderCanvas.width, renderCanvas.height); 
+      rCtx.fillStyle = '#e6eef6'; 
+      rCtx.font = fontPx + 'px Courier New, monospace'; 
+      rCtx.textBaseline = 'top'; 
+      for(let y = 0; y < rows; y++){ 
+        const line = lines[y]; 
+        rCtx.fillText(line, 0, y * charH); 
+      } 
+      renderCanvas.toBlob(function(blob){ 
+        const url = URL.createObjectURL(blob); 
+        const a = document.createElement('a'); 
+        a.href = url; 
+        a.download = 'mr-sk-typewriter-art.png'; 
+        document.body.appendChild(a); 
+        a.click(); 
+        a.remove(); 
+        URL.revokeObjectURL(url); 
+      }, 'image/png'); 
+    });
+
+    // Firecracker Animation Function
+    function showFirecrackerAnimation() {
+      const overlay = document.getElementById('firecracker-overlay');
+      overlay.style.display = 'flex';
+      overlay.innerHTML = '';
+      for(let i = 0; i < 50; i++) {
+        const fire = document.createElement('div');
+        fire.className = 'firecracker';
+        fire.style.left = Math.random() * 100 + '%';
+        fire.style.top = Math.random() * 100 + '%';
+        fire.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        overlay.appendChild(fire);
+        setTimeout(() => fire.remove(), 3000);
+      }
+      setTimeout(() => overlay.style.display = 'none', 3000);
+    }
+
+    // Welcome modal behavior (separate small script)
+    document.addEventListener('DOMContentLoaded', function(){
+      const startBtn = document.getElementById('startBtn');
+      const welcome = document.getElementById('welcome');
+      if(startBtn && welcome){
+        startBtn.addEventListener('click', () => {
+          welcome.style.display = 'none';
+        });
+        // close when clicking outside content
+        welcome.addEventListener('click', (e) => {
+          if(e.target === welcome) welcome.style.display = 'none';
+        });
+        // close on Escape
+        document.addEventListener('keydown', (e) => { if(e.key === 'Escape') welcome.style.display = 'none'; });
+      }
+    });
+  </script>
+</body>
+</html>
