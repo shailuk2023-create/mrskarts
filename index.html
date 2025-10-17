@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>MR. SK TYPEWRITER ARTS</title>
-  <!-- Modern + Typewriter fonts -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Inter:wght@400;600&family=Special+Elite&display=swap" rel="stylesheet">
   <style>
     :root{--bg:#0f1724;--card:#0b1220;--accent:#ff6b6b;--glass:rgba(255,255,255,0.04);--glass-2:rgba(255,255,255,0.02);--muted:#9fb6ff;--secondary:#6b6bff;--tertiary:#ffb86b}
@@ -19,10 +19,8 @@
     h1{margin:0;font-size:28px;font-weight:800;letter-spacing:0.6px; font-family:'Special Elite', monospace;background:linear-gradient(135deg,#ff6b6b,#6b6bff,#ffb86b,#ff6b6b); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:gradient-shift 3s ease infinite;}
     p.lead{margin:0;color:#b8d0ff;opacity:0.95; font-family:monospace}
 
-    /* Stylish Banner in Header */
     .banner {width:100%; height:4px; background:linear-gradient(90deg,var(--accent),var(--secondary),var(--tertiary),var(--accent)); border-radius:2px; margin-bottom:14px; animation: banner-glow 2s ease-in-out infinite alternate;}
     @keyframes banner-glow {0% {opacity:0.7;} 100% {opacity:1; box-shadow:0 0 10px var(--accent);} }
-
     @keyframes gradient-shift {0% {background-position:0% 50%;} 50% {background-position:100% 50%;} 100% {background-position:0% 50%;}}
 
     .grid{display:grid;grid-template-columns:480px 1fr;gap:18px}
@@ -58,7 +56,7 @@
     .preview{display:flex;flex-direction:column;gap:12px}
     .output-wrapper {position: relative; width: 100%; aspect-ratio: 16/9; overflow: auto; border-radius: 8px; background: #020617; border: 1px solid rgba(255,255,255,0.02); touch-action: pinch-zoom;}
     .output {position: absolute; inset: 0; padding: 12px; overflow: auto; height: 100%; width: 100%; display: flex; flex-direction: column; align-items: flex-start;}
-    pre{font-family: 'Courier New', Courier, monospace; font-size:11px; line-height:11px; margin:0; white-space:pre; color:#e6eef6; letter-spacing:0.01em; flex: 0 0 auto; min-width: fit-content; transition: font-size 0.2s ease, line-height 0.2s ease;}
+    pre{font-family: ui-monospace, SFMono-Regular, "Roboto Mono", "Courier New", monospace; font-size:11px; line-height:11px; margin:0; white-space:pre; color:#e6eef6; letter-spacing:0.01em; flex: 0 0 auto; min-width: fit-content; transition: font-size 0.2s ease, line-height 0.2s ease;}
 
     .meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
     .small{font-size:12px;color:#97b3e0; font-family:monospace}
@@ -70,13 +68,12 @@
 
     .copied{background:rgba(0,0,0,0.6);padding:6px 8px;border-radius:8px;color:#d2ffd9; font-family:monospace}
 
-    /* Zoom Controls */
     .zoom-controls {display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-top: 8px;}
     .zoom-btn {background: linear-gradient(90deg, var(--secondary), #9fb6ff); color: #09101a; border: none; padding: 6px 10px; border-radius: 8px; font-size: 12px; font-family: monospace; cursor: pointer; min-width: 40px;}
     .zoom-btn:hover {transform: scale(1.02);}
     #zoomLevel {font-size: 12px; color: var(--muted); font-family: monospace; min-width: 35px; text-align: center;}
 
-    /* Welcome Modal */
+    /* Welcome Modal - kept same as original */
     #welcome {position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); display:flex; align-items:center; justify-content:center; z-index:1000; opacity:0; animation:fadeIn 0.4s forwards;}
     #welcome-content {background:linear-gradient(135deg,var(--card),var(--glass)); padding:26px; border-radius:18px; max-width:880px; width:92%; text-align:center; box-shadow:0 12px 50px rgba(0,0,0,0.6); transform:scale(0.96); animation:popIn 0.4s forwards;}
     #welcome h2 {font-family:'Special Elite', monospace; color:var(--accent); margin-bottom:14px; font-size:30px}
@@ -88,11 +85,10 @@
     @keyframes fadeIn {to {opacity:1;}}
     @keyframes popIn {to {transform:scale(1);}}
 
-    /* Full Screen Firecracker Animation */
-    #firecracker-overlay {position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:2000; display:none; justify-content:center; align-items:center; pointer-events:none;}
-    .firecracker {position:absolute; width:4px; height:4px; background:var(--accent); border-radius:50%; animation:firework 1s ease-out infinite;}
-    @keyframes firework {0% {transform:translateY(0) rotate(0deg); opacity:1;} 100% {transform:translateY(-100vh) rotate(720deg); opacity:0;}}
-
+    /* Firecracker */
+    #firecracker-overlay {position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:2000; display:none; justify-content:center; align-items:center; pointer-events:none;}
+    .firecracker {position:absolute; width:6px; height:6px; background:var(--accent); border-radius:50%; animation:firework 1s ease-out forwards; box-shadow:0 6px 16px rgba(0,0,0,0.4);}
+    @keyframes firework {0% {transform:translateY(0) scale(1); opacity:1;} 100% {transform:translateY(-80vh) scale(0.3); opacity:0;}}
     @media (max-width: 768px) {
       .mark {width: 72px; height: 72px; font-size: 18px;}
       h1 {font-size: 24px;}
@@ -108,20 +104,17 @@
       .zoom-controls {gap: 4px;}
       .zoom-btn {padding: 5px 8px; font-size: 11px; min-width: 35px;}
     }
-
-    @media (min-width: 769px) {
-      .output-wrapper {aspect-ratio: 16/12;}
-    }
+    @media (min-width: 769px) { .output-wrapper {aspect-ratio: 16/12;} }
   </style>
 </head>
 <body>
-  <!-- Welcome Modal (working) -->
+  <!-- Welcome Modal kept exactly like original -->
   <div id="welcome" role="dialog" aria-modal="true" aria-hidden="false">
     <div id="welcome-content">
       <h2>Welcome to MR. SK TYPEWRITER ARTS</h2>
       <p>Create stunning typewriter-style art from your images! Check out these demos:</p>
       <div class="demo-grid">
-        <img class="demo-img" src="https://media.wired.com/photos/5932949552d99d6b984df8db/3:2/w_2560%2Cc_limit/gramophone_1200.jpg" alt="Demo 1">
+        <img class="demo-img" src="https://mentalbomb.com/wp-content/uploads/2023/04/Mona-1.jpg" alt="Demo 1">
         <img class="demo-img" src="https://nhigham.com/wp-content/uploads/2014/08/wpid-prince-charles-portrait1.jpg" alt="Demo 2">
         <img class="demo-img" src="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/14632442/shirley.1419980359.jpg?quality=90&strip=all&crop=8.3928571428571,0,83.214285714286,100" alt="Demo 3">
       </div>
@@ -136,7 +129,6 @@
     <header>
       <div class="logo">
         <div class="mark" id="logoMark">
-          <!-- Logo Image (online) -->
           <img src="https://static.vecteezy.com/system/resources/previews/011/701/793/non_2x/typewriter-logo-illustration-design-vector.jpg" alt="logo" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;" />
         </div>
         <div>
@@ -147,7 +139,6 @@
       <div style="margin-left:auto" class="small" id="brandExtra"></div>
     </header>
 
-    <!-- Stylish Banner -->
     <div class="banner"></div>
 
     <div class="grid">
@@ -162,7 +153,6 @@
 
         <div id="dropArea" class="uploader" tabindex="0" aria-label="Image upload area. Click to select or drop an image">
           <div style="font-size:15px"></div>
-          <!-- Invisible input covers whole area so click works; also provide explicit button as fallback -->
           <input id="fileInput" type="file" accept="image/*" aria-label="Choose image file">
           <button id="chooseBtn" style="position:relative; z-index:2; margin-top:12px; padding:8px 12px; border-radius:8px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); color:var(--muted);">Choose File</button>
           <img id="thumb" class="thumb" alt="preview" style="display:none">
@@ -284,6 +274,9 @@
     const outputBox = document.getElementById('outputBox');
     const copiedBadge = document.getElementById('copiedBadge');
 
+    // track last data URL / object URL to revoke later
+    let lastDataUrl = null;
+
     // Zoom functionality - now on font-size of pre
     const zoomInBtn = document.getElementById('zoomInBtn');
     const zoomOutBtn = document.getElementById('zoomOutBtn');
@@ -345,12 +338,12 @@
       }
     });
 
-    // Character ramps (UTF-8 safe)
+    // ✅ FIXED CHARACTER RAMPS - DISTINCT STYLES FOR EACH SET
     const ramps = { 
-      ultra: `█▓▒░@#W&%$9876543210?!abc;:+=-_,.\`"^~<>i!lI;:,'' `, 
-      full: `@#W&%$9876543210?!abc;:+=-,._ \`\\"^~<>i!lI;:,\\\"^'. `, 
-      dense: `@#8&B%0QOZYWmwdxkqjft/\\|()1{}[]?-_+~<>i!lI;:,\\\".' `, 
-      classic: `$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft\\/|()1{}[]?-_+~<>i!lI;:,\\\"^\`'. ` 
+      ultra: '█▓▒░█▓▒░@#W&%$@#W&%$98765432109876543210?!abc?!abc;:+=-_,;:+=-_,.\`"^~<>i!lI;:,\`"^~<>i!lI;:,\'\'  ',
+      full: '@#W&%$@#W&%$98765432109876543210?!abc?!abc;:+=-,;:+=-,._  \`\\"^~<>._  \`\\"^~<>i!lI;:,i!lI;:,\\\"^\'.\`\' ',
+      dense: '@#8&B@#8&B%0QO%0QOZYWmZYWmwdxkqjftwdxkqjft/\\|()1/\\|()1{}[]?_{}[]?-_+~<>i-_+~<>i!lI;:,!lI;:,\\\".\' ',
+      classic: '$@B%$@B%8&WM8&WM#*oah#*oahkbdpqwmkbdpqwmZO0QLZO0QLCJUYXzCJUYXzcvunxrjftcvunxrjft\\/|()1\\/|()1{}[]?{}[]?-_+~<>i-_+~<>i!lI;:,!lI;:,\\\"^\\`\'.\' '
     };
 
     let loadedImage = null;
@@ -405,7 +398,6 @@
 
     // Make dropArea keyboard accessible & clickable
     dropArea.addEventListener('click', (e) => {
-      // If actual input clicked, let it pass
       if(e.target && e.target.tagName && (e.target.tagName.toLowerCase() === 'input' || e.target.tagName.toLowerCase() === 'button')) return;
       fileInput.click();
     });
@@ -416,7 +408,7 @@
       }
     });
 
-    // Paste event with better handling
+    // Paste event
     window.addEventListener('paste', (e) => {
       const items = e.clipboardData && e.clipboardData.items; 
       if(!items) return; 
@@ -431,7 +423,7 @@
       } 
     });
 
-    // Improved handleFile with validation
+    // handleFile with validation
     function handleFile(file) { 
       if(!file || !file.type || !file.type.startsWith('image/')) { 
         alert('Please select a valid image file (jpg/png).'); 
@@ -459,7 +451,255 @@
       reader.readAsDataURL(file); 
     }
 
-    // Presets with image check - Auto Optimize updated to match screenshot values
+    // ✅ FIXED - REMOVED monospace filter, direct ramp usage
+    function getCurrentRamp() {
+      return ramps[charPreset.value] || ramps.classic;
+    }
+
+    // Generate art - ✅ FIXED RAMP USAGE
+    function generateArt() { 
+      if(!loadedImage){ 
+        alert('Koi image upload/paste karo!'); 
+        return; 
+      } 
+      try {
+        const targetW = parseInt(outWidth.value, 10); 
+        const aspectRatioCorrection = 0.55; 
+        const imgW = loadedImage.width, imgH = loadedImage.height; 
+        const scale = targetW / imgW; 
+        const targetH = Math.max(2, Math.round(imgH * scale * aspectRatioCorrection)); 
+
+        // Resize hidden canvas
+        canvas.width = targetW; 
+        canvas.height = targetH; 
+
+        const ctxLocal = canvas.getContext && canvas.getContext('2d');
+        if(!ctxLocal) { throw new Error('Canvas context unavailable'); }
+
+        ctxLocal.save(); 
+        ctxLocal.clearRect(0, 0, canvas.width, canvas.height); 
+        ctxLocal.drawImage(loadedImage, 0, 0, canvas.width, canvas.height); 
+        ctxLocal.restore(); 
+
+        const imgData = ctxLocal.getImageData(0, 0, canvas.width, canvas.height); 
+        const data = imgData.data; 
+
+        // ✅ FIXED - Direct ramp usage without filtering
+        let ramp = getCurrentRamp();
+        const rampLen = Math.max(2, ramp.length); 
+
+        const c = parseFloat(contrast.value); 
+        const g = parseFloat(gamma.value); 
+        const lum = new Float32Array(canvas.width * canvas.height); 
+        for(let y = 0; y < canvas.height; y++){ 
+          for(let x = 0; x < canvas.width; x++){ 
+            const i = (y * canvas.width + x) * 4; 
+            let r = data[i], gg = data[i + 1], b = data[i + 2]; 
+            let L = 0.21 * r + 0.72 * gg + 0.07 * b; 
+            L = clamp(((L - 128) * c) + 128, 0, 255); 
+            L = 255 * Math.pow(clamp(L / 255, 0, 1), 1 / g); 
+            lum[y * canvas.width + x] = L; 
+          } 
+        } 
+        if(ditherMode.value === 'fs'){ 
+          for(let y = 0; y < canvas.height; y++){ 
+            for(let x = 0; x < canvas.width; x++){ 
+              const idx = y * canvas.width + x; 
+              const oldVal = lum[idx]; 
+              const t = oldVal / 255; 
+              const qIndex = Math.round((rampLen - 1) * (1 - t)); 
+              const qVal = 255 * (1 - qIndex / (rampLen - 1)); 
+              const err = oldVal - qVal; 
+              lum[idx] = qVal; 
+              if(x + 1 < canvas.width) lum[idx + 1] += err * 7 / 16; 
+              if(x - 1 >= 0 && y + 1 < canvas.height) lum[idx + canvas.width - 1] += err * 3 / 16; 
+              if(y + 1 < canvas.height) lum[idx + canvas.width] += err * 5 / 16; 
+              if(x + 1 < canvas.width && y + 1 < canvas.height) lum[idx + canvas.width + 1] += err * 1 / 16; 
+            } 
+          } 
+        } 
+        let ascii = ''; 
+        for(let y = 0; y < canvas.height; y++){ 
+          for(let x = 0; x < canvas.width; x++){ 
+            const val = lum[y * canvas.width + x]; 
+            const t = clamp(val / 255, 0, 1); 
+            const rIndex = Math.floor((1 - t) * (rampLen - 1)); 
+            ascii += ramp[rIndex] || ' '; 
+          } 
+          ascii += '\n'; 
+        } 
+
+        // Force monospace rendering on output
+        asciiOut.style.fontFamily = 'ui-monospace, SFMono-Regular, "Roboto Mono", "Courier New", monospace';
+        asciiOut.textContent = ascii; 
+        baseFontSize = parseInt(fontSize.value); // Update base after generate
+        updateZoom(currentZoom); // Reapply current zoom on new content
+        metaInfo.textContent = `Generated — ${canvas.width} x ${canvas.height} chars (${charPreset.value})`; 
+      } catch (error) {
+        alert('Generate error: ' + (error && error.message ? error.message : error)); 
+        console.error('Generate error:', error); 
+        metaInfo.textContent = 'Error in generation';
+      }
+    }
+
+    convertBtn.addEventListener('click', () => { 
+      metaInfo.textContent = 'Generating...'; 
+      setTimeout(generateArt, 10); 
+    });
+    clearBtn.addEventListener('click', () => { 
+      thumb.style.display = 'none'; 
+      loadedImage = null; 
+      asciiOut.textContent = 'Upload/paste image then click Generate — MR. SK TYPEWRITER ARTS'; 
+      metaInfo.textContent = 'Ready'; 
+      baseFontSize = parseInt(fontSize.value);
+      updateZoom(1.0);
+    });
+
+    copyBtn.addEventListener('click', async () => { 
+      try { 
+        await navigator.clipboard.writeText(asciiOut.textContent); 
+        copiedBadge.style.display = 'inline-block'; 
+        setTimeout(() => copiedBadge.style.display = 'none', 1200); 
+      } catch(e) { 
+        alert('Clipboard permission denied — select and copy manually.'); 
+      } 
+    });
+    selectAllBtn.addEventListener('click', () => { 
+      const range = document.createRange(); 
+      range.selectNodeContents(asciiOut); 
+      const sel = window.getSelection(); 
+      sel.removeAllRanges(); 
+      sel.addRange(range); 
+    });
+    downloadTxtBtn.addEventListener('click', () => { 
+      const blob = new Blob([asciiOut.textContent], {type: 'text/plain;charset=utf-8'}); 
+      const url = URL.createObjectURL(blob); 
+      const a = document.createElement('a'); 
+      a.href = url; 
+      a.download = 'mr-sk-typewriter-art.txt'; 
+      document.body.appendChild(a); 
+      a.click(); 
+      a.remove(); 
+      URL.revokeObjectURL(url); 
+    });
+
+    // Improved Download 
+    downloadImgBtn.addEventListener('click', () => { 
+      const text = asciiOut.textContent.trim(); 
+      if(!text){ 
+        alert('Generate text first'); 
+        return; 
+      } 
+
+      // show animation (visual)
+      showFirecrackerAnimation();
+
+      const lines = text.split('\n'); 
+      const cols = lines.reduce((m, l) => Math.max(m, l.length), 0); 
+      const rows = lines.length; 
+      const scale = 6; 
+      const baseFont = Math.max(8, parseInt(fontSize.value, 10)); // Use base, not zoomed
+      const fontPx = baseFont * scale; 
+      const dpr = window.devicePixelRatio || 1;
+
+      const renderCanvas = document.createElement('canvas'); 
+      const rCtx = renderCanvas.getContext('2d'); 
+      if(!rCtx) { alert('Cannot create image canvas'); return; }
+
+      // Use monospace font for reliable width
+      rCtx.font = fontPx + 'px monospace'; 
+      const metrics = rCtx.measureText('M'); 
+      let charW = Math.ceil(metrics.width) + 1; 
+      const charH = Math.ceil(fontPx * 1.15); // line spacing
+
+      renderCanvas.width = cols * charW * dpr; 
+      renderCanvas.height = rows * charH * dpr; 
+      rCtx.scale(dpr, dpr);
+
+      rCtx.fillStyle = '#020617'; 
+      rCtx.fillRect(0, 0, cols * charW, rows * charH); 
+      rCtx.fillStyle = '#e6eef6'; 
+
+      rCtx.font = fontPx + 'px monospace'; 
+      rCtx.textBaseline = 'top'; // top baseline fixes vertical misalignment across devices
+      rCtx.textAlign = 'left';
+
+      for(let y = 0; y < rows; y++){ 
+        const line = lines[y]; 
+        rCtx.fillText(line, 0, y * charH); 
+      }
+
+      // Revoke previous data URL (if any) to avoid memory / browser confusion
+      try {
+        if (lastDataUrl) {
+          try { URL.revokeObjectURL(lastDataUrl); } catch(e) { /* ignore */ }
+          lastDataUrl = null;
+        }
+      } catch(e){ /* ignore */ }
+
+      // Try synchronous dataURL first (more likely to be permitted as part of user gesture)
+      try {
+        const dataUrl = renderCanvas.toDataURL('image/png');
+        lastDataUrl = dataUrl;
+        const a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = 'mr-sk-typewriter-art.png';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+
+        setTimeout(() => {
+          const overlay = document.getElementById('firecracker-overlay');
+          overlay.style.display = 'none';
+          overlay.setAttribute('aria-hidden', 'true');
+          overlay.innerHTML = '';
+        }, 900);
+      } catch(err) {
+        // fallback async blob method
+        renderCanvas.toBlob(function(blob){ 
+          const url = URL.createObjectURL(blob); 
+          lastDataUrl = url;
+          const a = document.createElement('a'); 
+          a.href = url; 
+          a.download = 'mr-sk-typewriter-art.png'; 
+          document.body.appendChild(a); 
+          a.click(); 
+          a.remove(); 
+          // revoke after giving browser a moment to start download
+          setTimeout(() => {
+            try { URL.revokeObjectURL(url); } catch(e) {}
+            if(lastDataUrl === url) lastDataUrl = null;
+          }, 1200);
+          setTimeout(() => {
+            const overlay = document.getElementById('firecracker-overlay');
+            overlay.style.display = 'none';
+            overlay.setAttribute('aria-hidden', 'true');
+            overlay.innerHTML = '';
+          }, 1200);
+        }, 'image/png'); 
+      }
+    });
+
+    // Improved firecracker that doesn't block future downloads (pointer-events:none while visible)
+    function showFirecrackerAnimation() {
+      const overlay = document.getElementById('firecracker-overlay');
+      overlay.style.display = 'flex';
+      overlay.style.pointerEvents = 'none'; // don't block clicks or downloads
+      overlay.setAttribute('aria-hidden', 'false');
+      overlay.innerHTML = '';
+      for(let i = 0; i < 30; i++) {
+        const fire = document.createElement('div');
+        fire.className = 'firecracker';
+        fire.style.left = Math.random() * 100 + '%';
+        fire.style.top = Math.random() * 100 + '%';
+        fire.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        overlay.appendChild(fire);
+        setTimeout(() => fire.remove(), 1400);
+      }
+      // do not auto-hide here — download handler will hide after attempt
+    }
+
+    // Presets tuned
     document.getElementById('presetAuto').addEventListener('click', () => { 
       if(!loadedImage){ 
         alert('Pehle image upload karo'); 
@@ -522,196 +762,7 @@
       updateZoom(1.0);
     });
 
-    // Generate art with improved error handling and safe canvas context usage
-    function generateArt() { 
-      if(!loadedImage){ 
-        alert('Koi image upload/paste karo!'); 
-        return; 
-      } 
-      try {
-        const targetW = parseInt(outWidth.value, 10); 
-        const aspectRatioCorrection = 0.55; 
-        const imgW = loadedImage.width, imgH = loadedImage.height; 
-        const scale = targetW / imgW; 
-        const targetH = Math.max(2, Math.round(imgH * scale * aspectRatioCorrection)); 
-
-        // Resize hidden canvas
-        canvas.width = targetW; 
-        canvas.height = targetH; 
-
-        // Safely get context (some browsers delay context availability)
-        const ctxLocal = canvas.getContext && canvas.getContext('2d');
-        if(!ctxLocal) { throw new Error('Canvas context unavailable'); }
-
-        ctxLocal.save(); 
-        ctxLocal.clearRect(0, 0, canvas.width, canvas.height); 
-        ctxLocal.drawImage(loadedImage, 0, 0, canvas.width, canvas.height); 
-        ctxLocal.restore(); 
-
-        const imgData = ctxLocal.getImageData(0, 0, canvas.width, canvas.height); 
-        const data = imgData.data; 
-        let ramp = ramps[charPreset.value] || ramps.full; 
-        ramp = Array.from(new Set(ramp.split(''))).join(''); 
-        const rampLen = Math.max(2, ramp.length); 
-        const c = parseFloat(contrast.value); 
-        const g = parseFloat(gamma.value); 
-        const lum = new Float32Array(canvas.width * canvas.height); 
-        for(let y = 0; y < canvas.height; y++){ 
-          for(let x = 0; x < canvas.width; x++){ 
-            const i = (y * canvas.width + x) * 4; 
-            let r = data[i], gg = data[i + 1], b = data[i + 2]; 
-            let L = 0.21 * r + 0.72 * gg + 0.07 * b; 
-            L = clamp(((L - 128) * c) + 128, 0, 255); 
-            L = 255 * Math.pow(clamp(L / 255, 0, 1), 1 / g); 
-            lum[y * canvas.width + x] = L; 
-          } 
-        } 
-        if(ditherMode.value === 'fs'){ 
-          for(let y = 0; y < canvas.height; y++){ 
-            for(let x = 0; x < canvas.width; x++){ 
-              const idx = y * canvas.width + x; 
-              const oldVal = lum[idx]; 
-              const t = oldVal / 255; 
-              const qIndex = Math.round((rampLen - 1) * (1 - t)); 
-              const qVal = 255 * (1 - qIndex / (rampLen - 1)); 
-              const err = oldVal - qVal; 
-              lum[idx] = qVal; 
-              if(x + 1 < canvas.width) lum[idx + 1] += err * 7 / 16; 
-              if(x - 1 >= 0 && y + 1 < canvas.height) lum[idx + canvas.width - 1] += err * 3 / 16; 
-              if(y + 1 < canvas.height) lum[idx + canvas.width] += err * 5 / 16; 
-              if(x + 1 < canvas.width && y + 1 < canvas.height) lum[idx + canvas.width + 1] += err * 1 / 16; 
-            } 
-          } 
-        } 
-        let ascii = ''; 
-        for(let y = 0; y < canvas.height; y++){ 
-          for(let x = 0; x < canvas.width; x++){ 
-            const val = lum[y * canvas.width + x]; 
-            const t = clamp(val / 255, 0, 1); 
-            const rIndex = Math.floor((1 - t) * (rampLen - 1)); 
-            ascii += ramp[rIndex] || ' '; 
-          } 
-          ascii += '\n'; 
-        } 
-        asciiOut.textContent = ascii; 
-        baseFontSize = parseInt(fontSize.value); // Update base after generate
-        updateZoom(currentZoom); // Reapply current zoom on new content
-        metaInfo.textContent = `Generated — ${canvas.width} x ${canvas.height} chars`; 
-      } catch (error) {
-        alert('Generate error: ' + (error && error.message ? error.message : error)); 
-        console.error('Generate error:', error); 
-        metaInfo.textContent = 'Error in generation';
-      }
-    }
-
-    convertBtn.addEventListener('click', () => { 
-      metaInfo.textContent = 'Generating...'; 
-      // small delay to allow UI update on slower devices
-      setTimeout(generateArt, 10); 
-    });
-    clearBtn.addEventListener('click', () => { 
-      thumb.style.display = 'none'; 
-      loadedImage = null; 
-      asciiOut.textContent = 'Upload/paste image then click Generate — MR. SK TYPEWRITER ARTS'; 
-      metaInfo.textContent = 'Ready'; 
-      baseFontSize = parseInt(fontSize.value);
-      updateZoom(1.0);
-    });
-
-    copyBtn.addEventListener('click', async () => { 
-      try { 
-        await navigator.clipboard.writeText(asciiOut.textContent); 
-        copiedBadge.style.display = 'inline-block'; 
-        setTimeout(() => copiedBadge.style.display = 'none', 1200); 
-      } catch(e) { 
-        alert('Clipboard permission denied — select and copy manually.'); 
-      } 
-    });
-    selectAllBtn.addEventListener('click', () => { 
-      const range = document.createRange(); 
-      range.selectNodeContents(asciiOut); 
-      const sel = window.getSelection(); 
-      sel.removeAllRanges(); 
-      sel.addRange(range); 
-    });
-    downloadTxtBtn.addEventListener('click', () => { 
-      const blob = new Blob([asciiOut.textContent], {type: 'text/plain;charset=utf-8'}); 
-      const url = URL.createObjectURL(blob); 
-      const a = document.createElement('a'); 
-      a.href = url; 
-      a.download = 'mr-sk-typewriter-art.txt'; 
-      document.body.appendChild(a); 
-      a.click(); 
-      a.remove(); 
-      URL.revokeObjectURL(url); 
-    });
-    downloadImgBtn.addEventListener('click', () => { 
-      const text = asciiOut.textContent.trim(); 
-      if(!text){ 
-        alert('Generate text first'); 
-        return; 
-      } 
-      // Firecracker Animation Start
-      showFirecrackerAnimation();
-      // Original download code - uses base font, not zoomed
-      const lines = text.split('\n'); 
-      const cols = lines.reduce((m, l) => Math.max(m, l.length), 0); 
-      const rows = lines.length; 
-      const scale = 6; 
-      const baseFont = Math.max(8, parseInt(fontSize.value, 10)); // Use base, not zoomed
-      const fontPx = baseFont * scale; 
-      const dpr = window.devicePixelRatio || 1;
-      const renderCanvas = document.createElement('canvas'); 
-      const rCtx = renderCanvas.getContext('2d'); 
-      if(!rCtx) { alert('Cannot create image canvas'); return; }
-      rCtx.font = fontPx + 'px Courier New, monospace'; 
-      rCtx.textAlign = 'left';
-      rCtx.textBaseline = 'alphabetic'; // Consistent cross-device baseline
-      const metrics = rCtx.measureText('M'); 
-      const charW = Math.ceil(metrics.width); 
-      const charH = Math.ceil(fontPx * 1.15); // Slightly increased for better line spacing
-      renderCanvas.width = cols * charW * dpr; 
-      renderCanvas.height = rows * charH * dpr; 
-      rCtx.scale(dpr, dpr); // Scale for high-DPI devices like mobile
-      rCtx.fillStyle = '#020617'; 
-      rCtx.fillRect(0, 0, cols * charW, rows * charH); 
-      rCtx.fillStyle = '#e6eef6'; 
-      rCtx.font = fontPx + 'px Courier New, monospace'; 
-      for(let y = 0; y < rows; y++){ 
-        const line = lines[y]; 
-        rCtx.fillText(line, 0, y * charH); 
-      } 
-      renderCanvas.toBlob(function(blob){ 
-        const url = URL.createObjectURL(blob); 
-        const a = document.createElement('a'); 
-        a.href = url; 
-        a.download = 'mr-sk-typewriter-art.png'; 
-        document.body.appendChild(a); 
-        a.click(); 
-        a.remove(); 
-        URL.revokeObjectURL(url); 
-      }, 'image/png'); 
-    });
-
-    // Firecracker Animation Function
-    function showFirecrackerAnimation() {
-      const overlay = document.getElementById('firecracker-overlay');
-      overlay.style.display = 'flex';
-      overlay.setAttribute('aria-hidden', 'false');
-      overlay.innerHTML = '';
-      for(let i = 0; i < 50; i++) {
-        const fire = document.createElement('div');
-        fire.className = 'firecracker';
-        fire.style.left = Math.random() * 100 + '%';
-        fire.style.top = Math.random() * 100 + '%';
-        fire.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-        overlay.appendChild(fire);
-        setTimeout(() => fire.remove(), 3000);
-      }
-      setTimeout(() => { overlay.style.display = 'none'; overlay.setAttribute('aria-hidden', 'true'); }, 3000);
-    }
-
-    // Welcome modal behavior (separate small script)
+    // Welcome modal behavior - kept same as original
     document.addEventListener('DOMContentLoaded', function(){
       const startBtn = document.getElementById('startBtn');
       const welcome = document.getElementById('welcome');
@@ -734,4 +785,3 @@
   </script>
 </body>
 </html>
-
